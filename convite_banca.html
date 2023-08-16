@@ -6,38 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Convite para Banca de TCC</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
-
-        form, h2, textarea {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        hr {
-            width: 80%;
-            margin-bottom: 20px;
-        }
-        
-        label {
-	    font-size: 18px; /* Ajuste para o tamanho desejado */
-	    font-weight: bold; /* Torna o texto dos labels (títulos dos campos) em negrito */
+       body {
+	    font-family: 'Arial', sans-serif;
+	    background-color: #f4f4f4;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    margin: 0;
+	    padding: 20px;
 	}
-
+	
+	form {
+	    background-color: #ffffff;
+	    padding: 30px;
+	    border-radius: 10px;
+	    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+	    width: 100%;
+	    max-width: 500px;
+	}
+	
+	h2, h3 {
+	    text-align: center;
+	    margin-bottom: 20px;
+	}
+	
+	label {
+	    font-size: 16px;
+	    display: block;
+	    margin-bottom: 10px;
+	}
+	
 	input, select, textarea {
-	    font-size: 16px; /* Ajuste para o tamanho desejado */
+	    width: 100%;
+	    padding: 10px;
+	    margin-bottom: 20px;
+	    border-radius: 5px;
+	    border: 1px solid #c4c4c4;
+	    font-size: 16px;
+	    box-sizing: border-box;
+	}
+	
+	input[type="button"] {
+	    background-color: #3498db;
+	    color: #ffffff;
+	    cursor: pointer;
+	    transition: background-color 0.3s ease;
+	}
+	
+	input[type="button"]:hover {
+	    background-color: #2980b9;
 	}
 	
 	textarea {
-	    text-align: left; /* Alteração feita aqui */
-	    margin-bottom: 20px;
-	    font-size: 16px;
+	    resize: vertical; /* Permite ao usuário redimensionar apenas verticalmente */
 	}
 
     </style>
