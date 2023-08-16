@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Convite para Banca de TCC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        form, h2, textarea {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        
+        label {
+	    font-size: 18px; /* Ajuste para o tamanho desejado */
+	    font-weight: bold; /* Torna o texto dos labels (títulos dos campos) em negrito */
+	}
+
+	input, select, textarea {
+	    font-size: 16px; /* Ajuste para o tamanho desejado */
+	}
+	
+	textarea {
+	    text-align: left; /* Alteração feita aqui */
+	    margin-bottom: 20px;
+	    font-size: 16px;
+	}
+
+    </style>
+</head>
+<body>
+<br><br>
+    <form id="conviteForm">
+	 <label for="tratamento1">Tratamento Membro 1 *</label>
+        <select id="tratamento1" required>
+            <option value=""></option>
+            <option value="Professor">Professor</option>
+            <option value="Professora">Professora</option>
+            <option value="Técnico">Técnico</option>
+            <option value="Técnica">Técnica</option>
+        </select><br><br>
+
+        <label for="membro1">Nome do Membro 1 *</label>
+        <input type="text" id="membro1" required><br><br>
+
+        <label for="tratamento2">Tratamento Membro 2 *</label>
+        <select id="tratamento2" required>
+            <option value=""></option>
+            <option value="Professor">Professor</option>
+            <option value="Professora">Professora</option>
+            <option value="Técnico">Técnico</option>
+            <option value="Técnica">Técnica</option>
+        </select><br><br>
+
+        <label for="membro2">Nome do Membro 2 *</label>
+        <input type="text" id="membro2" required><br><br>
+
+        <label for="nomeAluno">Nome Completo do Aluno *</label>
+        <input type="text" id="nomeAluno" required><br><br>
+
+        <label for="nomeMonografia">Nome da Monografia *</label>
+        <input type="text" id="nomeMonografia" required><br><br>
+
+        <label for="dataDefesa">Data da Defesa *</label>
+        <input type="date" id="dataDefesa" required><br><br>
+
+        <label for="horarioPreferencial">Horário Preferencial *</label>
+        <input type="time" id="horarioPreferencial" required><br><br>
+
+        <input type="button" value="Gerar E-mail de Convite" onclick="gerarConvite()">
+    </form>
+
+    <hr>
+    
+    <h3>Título do E-mail:</h3>
+	<p id="tituloEmail"></p>
+   <hr>
+
+   <h3>Corpo do E-mail:</h3>
+
+    <textarea id="emailConvite" rows="20" cols="70" readonly></textarea>
+
+    <script>
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
+
+        function formatDate(date) {
+            const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+            const splitDate = date.split('-');
+            return `${parseInt(splitDate[2])} de ${meses[parseInt(splitDate[1]) - 1]} de ${splitDate[0]}`;
+        }
+
+        function gerarConvite() {
+ 	    const tratamento1 = document.getElementById('tratamento1').value;
+            const membro1 = document.getElementById('membro1').value;
+            const tratamento2 = document.getElementById('tratamento2').value;
+            const membro2 = document.getElementById('membro2').value;
+            const nomeAluno = document.getElementById('nomeAluno').value;
+            const nomeMonografia = document.getElementById('nomeMonografia').value;
+            const dataDefesa = formatDate(document.getElementById('dataDefesa').value);
+            const horarioPreferencial = document.getElementById('horarioPreferencial').value;
+
+            const primeiroNomeAluno = capitalizeFirstLetter(nomeAluno.split(' ')[0]);
+            
+            const tituloEmail = `Convite para integrar a banca de defesa de TCC de ${nomeAluno}`;
+	    document.getElementById('tituloEmail').textContent = tituloEmail;
+
+            const texto = `Prezados ${tratamento1} ${membro1} e ${tratamento2} ${membro2},\n
+Venho, por meio deste e-mail, convidá-los a fazer parte da banca examinadora da defesa de Trabalho de Conclusão de Curso (TCC) de Tratamento do aluno ${nomeAluno}.\n
+A monografia de ${primeiroNomeAluno}, intitulada "${nomeMonografia}", aborda um tema relevante e de grande interesse para nossa instituição.\n
+A defesa está programada para ocorrer no dia ${dataDefesa}. Gostaríamos de solicitar, caso aceite nosso convite, que nos informe quais seriam os horários disponíveis em sua agenda durante o citado dia. Nosso horário preferencial é ${horarioPreferencial}, mas estamos abertos a ajustes de acordo com sua conveniência.\n
+Desde já, agradecemos sua atenção e ficamos no aguardo de sua resposta.`;
+
+            document.getElementById('emailConvite').textContent = texto;
+        }
+    </script>
+</body>
+
+</html>
+
