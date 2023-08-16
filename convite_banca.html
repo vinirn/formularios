@@ -65,6 +65,7 @@
 </head>
 <body>
 <br><br>
+	<div id="formulario">
 	<h2> E-mail convite para banca de TCC</h2>
 <br>
     <form id="conviteForm">
@@ -106,14 +107,15 @@
 
         <input type="button" value="Gerar E-mail de Convite" onclick="gerarConvite()">
     </form>
+	</div>
 
     <hr>
-    <div>
+    <div id="titulo">
 	    <h3>Título do E-mail:</h3>
 		<p id="tituloEmail"></p>
 	   <hr>
     </div>
-   <div>
+   <div id="corpo">
    <h3>Corpo do E-mail:</h3>
 
     <textarea id="emailConvite" rows="20" cols="70" readonly></textarea>
