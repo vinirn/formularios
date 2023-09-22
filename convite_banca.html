@@ -112,8 +112,9 @@
         <label for="nomeMonografia">Nome da Monografia: </label>
         <input type="text" id="nomeMonografia" required><br><br>
 
-        <label for="dataDefesa">Data da Defesa: </label>
-        <input type="date" id="dataDefesa" lang="pt-BR" required><br><br>
+      	<label for="dataDefesa">Data da Defesa: </label>
+	<input type="text" id="dataDefesa" oninput="mascaraData(this)" maxlength="10" required placeholder="DD/MM/AAAA"><br><br>
+
 
         <label for="horarioPreferencial">Horário Preferencial: </label>
         <input type="time" id="horarioPreferencial" required><br><br>
@@ -140,6 +141,15 @@
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         }
+
+	function mascaraData(input) {
+	    let data = input.value;
+	    data = data.replace(/\D/g, ""); // Remove tudo o que não for dígito
+	    data = data.replace(/(\d{2})(\d)/, "$1/$2"); // Coloca um slash entre o segundo e o terceiro dígitos
+	    data = data.replace(/(\d{2})(\d)/, "$1/$2"); // Coloca um slash entre o quarto e o quinto dígitos
+	    input.value = data;
+	}
+
 
         function formatDate(date) {
             const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
