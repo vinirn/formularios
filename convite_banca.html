@@ -98,6 +98,14 @@
         <label for="membro2">Nome do Membro 2: </label>
         <input type="text" id="membro2" required><br><br>
 
+	<label for="generoAluno">Gênero do Aluno:</label>
+	<select id="generoAluno" required>
+	    <option value=""></option>
+	    <option value="masculino">Masculino</option>
+	    <option value="feminino">Feminino</option>
+	</select><br><br>
+
+
         <label for="nomeAluno">Nome Completo do Aluno: </label>
         <input type="text" id="nomeAluno" required><br><br>
 
@@ -144,6 +152,10 @@
             const membro1 = document.getElementById('membro1').value;
             const tratamento2 = document.getElementById('tratamento2').value;
             const membro2 = document.getElementById('membro2').value;
+
+	    const generoAluno = document.getElementById('generoAluno').value;
+            const designacaoAluno = generoAluno === "masculino" ? "do aluno" : "da aluna";
+	
             const nomeAluno = document.getElementById('nomeAluno').value;
             const nomeMonografia = document.getElementById('nomeMonografia').value;
             const dataDefesa = formatDate(document.getElementById('dataDefesa').value);
@@ -155,7 +167,7 @@
 	    document.getElementById('tituloEmail').textContent = tituloEmail;
 
             const texto = `Prezados ${tratamento1} ${membro1} e ${tratamento2} ${membro2},\n
-Venho, por meio deste e-mail, convidá-los a fazer parte da banca examinadora da defesa de Trabalho de Conclusão de Curso (TCC) do aluno ${nomeAluno}.\n
+Venho, por meio deste e-mail, convidá-los a fazer parte da banca examinadora ${designacaoAluno} ${nomeAluno}.\n
 A monografia de ${primeiroNomeAluno}, intitulada "${nomeMonografia}", aborda um tema relevante e de grande interesse para nossa instituição.\n
 A defesa está programada para ocorrer no dia ${dataDefesa}. Gostaríamos de solicitar, caso aceite nosso convite, que nos informe quais seriam os horários disponíveis em sua agenda durante o citado dia. Nosso horário preferencial é ${horarioPreferencial}, mas estamos abertos a ajustes de acordo com sua conveniência.\n
 Desde já, agradecemos sua atenção e ficamos no aguardo de sua resposta.`;
