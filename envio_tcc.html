@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Convite para Banca de TCC</title>
+    <style>
+       body {
+	    font-family: 'Arial', sans-serif;
+	    background-color: #f4f4f4;
+	    margin: 0;
+	    padding: 20px;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+            align-items: flex-start; /* Alinha os elementos filhos ao topo */
+	}
+	
+	form {
+	    background-color: #ffffff;
+	    padding: 30px;
+	    border-radius: 10px;
+	    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+	    width: 100%;
+	}
+	
+	h2, h3 {
+	    text-align: center;
+	    margin-bottom: 20px;
+	}
+	
+	label {
+	    font-size: 16px;
+	    display: block;
+	    margin-bottom: 10px;
+	}
+	
+	input, select, textarea {
+	    width: 100%;
+	    padding: 10px;
+	    margin-bottom: 20px;
+	    border-radius: 5px;
+	    border: 1px solid #c4c4c4;
+	    font-size: 16px;
+	    box-sizing: border-box;
+	}
+	
+	input[type="button"] {
+	    background-color: #3498db;
+	    color: #ffffff;
+	    cursor: pointer;
+	    transition: background-color 0.3s ease;
+	}
+	
+	input[type="button"]:hover {
+	    background-color: #2980b9;
+	}
+	
+	textarea {
+	    resize: vertical; /* Permite ao usuário redimensionar apenas verticalmente */
+	}
+
+        .container {
+            height: 200px;
+	    display: flex;
+            flex-direction: column;  /* Para organizar os elementos filhos na vertical */
+            align-items: flex-start; /* Alinha os elementos filhos ao topo */
+        }
+
+
+    </style>
+</head>
+<body>
+<br><br>
+	<div id="formulario">
+	<h2> E-mail convite para banca de TCC</h2>
+<br>
+    <form id="conviteForm">
+	 <label for="tratamento1">Tratamento Membro 1: </label>
+        <select id="tratamento1" required>
+            <option value=""></option>
+            <option value="professor">Professor</option>
+            <option value="professora">Professora</option>
+            <option value="técnico">Técnico</option>
+            <option value="técnica">Técnica</option>
+        </select><br><br>
+
+        <label for="membro1">Nome do Membro 1: </label>
+        <input type="text" id="membro1" required><br><br>
+
+        <label for="tratamento2">Tratamento Membro 2: </label>
+        <select id="tratamento2" required>
+            <option value=""></option>
+            <option value="professor">Professor</option>
+            <option value="professora">Professora</option>
+            <option value="técnico">Técnico</option>
+            <option value="técnica">Técnica</option>
+        </select><br><br>
+
+        <label for="membro2">Nome do Membro 2: </label>
+        <input type="text" id="membro2" required><br><br>
+
+	<label for="generoAluno">Gênero do Aluno:</label>
+	<select id="generoAluno" required>
+	    <option value=""></option>
+	    <option value="masculino">Masculino</option>
+	    <option value="feminino">Feminino</option>
+	</select><br><br>
+
+
+        <label for="nomeAluno">Nome Completo do Aluno: </label>
+        <input type="text" id="nomeAluno" required><br><br>
+
+        <label for="nomeMonografia">Nome da Monografia: </label>
+        <input type="text" id="nomeMonografia" required><br><br>
+
+      	<label for="dataDefesa">Data da Defesa: </label>
+	<input type="text" id="dataDefesa" oninput="mascaraData(this)" maxlength="10" required placeholder="DD/MM/AAAA"><br><br>
+
+
+        <label for="horario">Horário: </label>
+        <input type="time" id="horarioPreferencial" required><br><br>
+
+        <input type="button" value="Gerar E-mail de Convite" onclick="gerarConvite()">
+    </form>
+	</div>
+
+    <hr>
+    <div id="email" class="container">
+	<div id="titulo-email">
+	    <h3>Título do E-mail:</h3>
+		<textarea id="tituloEmail" rows="2" cols="70" readonly></textarea>
+    	</div>
+	<div id="corpo-email">
+	   <h3>Corpo do E-mail:</h3>
+	    <textarea id="emailConvite" rows="20" cols="70" readonly></textarea>
+	</div>
+    </div>
+
+    <script>
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
+
+	function mascaraData(input) {
+	    let data = input.value;
+	    data = data.replace(/\D/g, ""); // Remove tudo o que não for dígito
+	    data = data.replace(/(\d{2})(\d)/, "$1/$2"); // Coloca um slash entre o segundo e o terceiro dígitos
+	    data = data.replace(/(\d{2})(\d)/, "$1/$2"); // Coloca um slash entre o quarto e o quinto dígitos
+	    input.value = data;
+	}
+
+
+        function formatDate(date) {
+            const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+            const splitDate = date.split('/');
+            return `${parseInt(splitDate[0])} de ${meses[parseInt(splitDate[1]) - 1]} de ${splitDate[2]}`;
+        }
+
+        function gerarConvite() {
+ 	    const tratamento1 = document.getElementById('tratamento1').value;
+            const membro1 = document.getElementById('membro1').value;
+            const tratamento2 = document.getElementById('tratamento2').value;
+            const membro2 = document.getElementById('membro2').value;
+
+	      const generoAluno = document.getElementById('generoAluno').value;
+            const designacaoAluno = generoAluno === "masculino" ? "do aluno" : "da aluna";
+	
+            const nomeAluno = document.getElementById('nomeAluno').value;
+            const nomeMonografia = document.getElementById('nomeMonografia').value;
+            const dataDefesa = formatDate(document.getElementById('dataDefesa').value);
+            const horario = document.getElementById('horario').value;
+
+            const primeiroNomeAluno = capitalizeFirstLetter(nomeAluno.split(' ')[0]);
+            
+            const tituloEmail = `Envio de TCC a ser defendido por ${nomeAluno}`;
+	    document.getElementById('tituloEmail').textContent = tituloEmail;
+
+            const texto = `Prezados ${tratamento1} ${membro1} e ${tratamento2} ${membro2},\n
+Envio, em anexo, o trabalho de conclusão de curso ${designacaoAluno} ${nomeAluno}.\n
+Lembro que a monografia de ${primeiroNomeAluno}, intitulada "${nomeMonografia}", está programada para ocorrer no dia ${dataDefesa}, às ${horario}.\n
+Mais uma vez, agradecemos pela sua valiosa presença nesta banca examinadora.`;
+
+            document.getElementById('emailConvite').textContent = texto;
+        }
+    </script>
+</body>
+
+</html>
