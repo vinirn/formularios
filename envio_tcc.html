@@ -120,9 +120,9 @@
 
 
         <label for="horario">Horário: </label>
-        <input type="time" id="horarioPreferencial" required><br><br>
+        <input type="time" id="horario" required><br><br>
 
-        <input type="button" value="Gerar E-mail de Convite" onclick="gerarConvite()">
+        <input type="button" value="Gerar E-mail" onclick="gerarEmail()">
     </form>
 	</div>
 
@@ -158,7 +158,7 @@
             return `${parseInt(splitDate[0])} de ${meses[parseInt(splitDate[1]) - 1]} de ${splitDate[2]}`;
         }
 
-        function gerarConvite() {
+        function gerarEmail() {
  	    const tratamento1 = document.getElementById('tratamento1').value;
             const membro1 = document.getElementById('membro1').value;
             const tratamento2 = document.getElementById('tratamento2').value;
